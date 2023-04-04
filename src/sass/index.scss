@@ -1,2 +1,35 @@
 @import './common';
-@import './example';
+  
+.search-form {
+    display: flex;
+  }
+
+.gallery{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+  }
+
+  img {
+    display: block;
+  }
+
+  .info {
+    display: flex;
+    width: 350px;
+  }
+
+  .info-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 15px;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+
