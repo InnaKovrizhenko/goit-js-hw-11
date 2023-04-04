@@ -31,6 +31,7 @@ async function onFormSubmit(event) {
 
     if (inputText === "") {
         gallery.innerHTML = '';
+        loadMore.classList.add('is-hidden');
         return Notiflix.Notify.failure("Write something, plaese!");
     }
 
@@ -42,6 +43,7 @@ async function onFormSubmit(event) {
         
         if (images.length === 0) {
             gallery.innerHTML = '';
+            loadMore.classList.add('is-hidden');
             return Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
         } else {
             Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
@@ -49,6 +51,7 @@ async function onFormSubmit(event) {
         renderPicture (images, gallery);
         galleryShow.refresh();
         page = 1;
+        smoothPageScrolling ();
 
     if (data.data.totalHits > 40) {
         loadMore.classList.remove('is-hidden');
@@ -63,7 +66,7 @@ loadMore.addEventListener('click', onLoadMore);
 
 async function onLoadMore () {
     page += 1;
-    console.log("PAGE", page);
+    // console.log("PAGE", page);
     // console.log("inputText", inputText);
     const data = await fetchPictures(inputText, page);
     // console.log("IMAGES", data);
@@ -71,13 +74,23 @@ async function onLoadMore () {
     // console.log("ARRAY", images);
     renderPicture (images, gallery);
     galleryShow.refresh();
+    smoothPageScrolling ();
 
     const pages = data.data.totalHits / 40;
 
     if (page > pages) {
         loadMore.classList.add('is-hidden');
-        return Notiflix.Notify.failure("Sorry, no more pictures.");
+        return Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
     }
+}
+
+function smoothPageScrolling () {
+    const { height: cardHeight } = gallery.firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+    top: cardHeight * 2,
+    behavior: "smooth",
+    });
 }
 
 

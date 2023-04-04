@@ -2,10 +2,34 @@
   
 .search-form {
     display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  button {
+    color: #FFFFFF;
+    background-color: seagreen;
+    border-radius: 5px;
+    border-color: seagreen;
+    width: 100px;
+    height: 40px;
+  }
+
+  p {
+    font-size: 20;
+  }
+
+  input {
+    border-radius: 5px;
+    border-color: seagreen;
+    width: 500px;
+    height: 40px;
+    outline: 0;
   }
 
 .gallery{
     margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
     gap:15px;
