@@ -49,9 +49,9 @@ async function onFormSubmit(event) {
             Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
         }
         renderPicture (images, gallery);
+        
         galleryShow.refresh();
         page = 1;
-        smoothPageScrolling ();
 
     if (data.data.totalHits > 40) {
         loadMore.classList.remove('is-hidden');
