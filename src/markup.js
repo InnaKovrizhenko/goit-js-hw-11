@@ -23,7 +23,7 @@ export function renderPicture (data, gallery) {
         </p>
       </div>
     </div>`
-    })
+    }).join("");
     gallery.insertAdjacentHTML("beforeend", markup);
 }
 

@@ -21,13 +21,13 @@ let page = 1;
 
 form.addEventListener('submit', onFormSubmit);
 
-
 async function onFormSubmit(event) {
     
     event.preventDefault();
     inputText = event.currentTarget.searchQuery.value;
     // console.log(inputText);
     gallery.innerHTML = '';
+    page = 1;
 
     if (inputText === "") {
         gallery.innerHTML = '';
@@ -51,7 +51,7 @@ async function onFormSubmit(event) {
         renderPicture (images, gallery);
         
         galleryShow.refresh();
-        page = 1;
+        
 
     if (data.data.totalHits > 40) {
         loadMore.classList.remove('is-hidden');
@@ -66,7 +66,7 @@ loadMore.addEventListener('click', onLoadMore);
 
 async function onLoadMore () {
     page += 1;
-    // console.log("PAGE", page);
+    console.log("PAGE", page);
     // console.log("inputText", inputText);
     const data = await fetchPictures(inputText, page);
     // console.log("IMAGES", data);
